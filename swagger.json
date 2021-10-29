@@ -1,0 +1,272 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Video Game and Platform data",
+    "version": "1.0.0"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "basePath": "/api/v1",
+  "paths": {
+    "/games": {
+      "get": {
+        "summary": "Get all games",
+        "description": "Retrieves the list of games",
+        "responses": {
+          "200": {
+            "description": "The list of games",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Game"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a game",
+        "parameters": [
+          {
+            "name": "game",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewGame"
+            }
+          }
+        ],
+        "description": "Creates a single game",
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "The newly created game",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        }
+      }
+    },
+    "/games/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "summary": "Get single game",
+        "description": "Get a game by id",
+        "responses": {
+          "200": {
+            "description": "Single game",
+            "schema": {
+              "$ref": "#/definitions/Game"
+            }
+          }
+        }
+      }
+    },
+    "/platforms": {
+      "get": {
+        "summary": "Get all platforms",
+        "description": "Retrieves the list of platforms",
+        "responses": {
+          "200": {
+            "description": "The list of platforms",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Platform"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a platform",
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewPlatform"
+            }
+          }
+        ],
+        "description": "Creates a single platform",
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "The newly created game",
+            "schema": {
+              "$ref": "#/definitions/Platform"
+            }
+          }
+        }
+      }
+    },
+    "/platforms/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "summary": "Get single platform",
+        "description": "Get platform by id",
+        "responses": {
+          "200": {
+            "description": "Single platform",
+            "schema": {
+              "$ref": "#/definitions/Platform"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Game": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "object",
+          "properties": {
+            "PS5": {
+              "type": "string"
+            },
+            "XBOX_Series_X": {
+              "type": "string"
+            },
+            "Windows": {
+              "type": "string"
+            },
+            "macOs": {
+              "type": "string"
+            },
+            "Linux": {
+              "type": "string"
+            },
+            "Nintendo_Switch": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "NewGame": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "platforms": {
+          "type": "object",
+          "properties": {
+            "PS5": {
+              "type": "string"
+            },
+            "XBOX_Series_X": {
+              "type": "string"
+            },
+            "Windows": {
+              "type": "string"
+            },
+            "macOs": {
+              "type": "string"
+            },
+            "Linux": {
+              "type": "string"
+            },
+            "Nintendo_Switch": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Platform": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "specifications": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "storage_capacity": {
+              "type": "string"
+            },
+            "GPU": {
+              "type": "string"
+            },
+            "CPU": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "NewPlatform": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "release_date": {
+          "type": "string"
+        },
+        "specifications": {
+          "type": "object",
+          "properties": {
+            "manufacturer": {
+              "type": "string"
+            },
+            "storage_capacity": {
+              "type": "string"
+            },
+            "GPU": {
+              "type": "string"
+            },
+            "CPU": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
